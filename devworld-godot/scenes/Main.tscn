@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://devworld-main"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/VoxelWorld.gd" id="2_world"]
+[ext_resource type="Script" path="res://scripts/FlyCamera.gd" id="3_cam"]
+[ext_resource type="Script" path="res://scripts/EditorPanel.gd" id="4_editor"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="VoxelWorld" type="Node3D" parent="."]
+script = ExtResource("2_world")
+
+[node name="FlyCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 18, 30)
+current = true
+script = ExtResource("3_cam")
+
+[node name="EditorPanel" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+script = ExtResource("4_editor")
+
+[node name="VBox" type="VBoxContainer" parent="EditorPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="EditorPanel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = null
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="EditorPanel/VBox/Header"]
+layout_mode = 2
+text = "DevWorld — Spatial IDE"
+horizontal_alignment = 1
+
+[node name="Split" type="HSplitContainer" parent="EditorPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FileTree" type="Tree" parent="EditorPanel/VBox/Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CodeView" type="VBoxContainer" parent="EditorPanel/VBox/Split"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CodeEdit" type="TextEdit" parent="EditorPanel/VBox/Split/CodeView"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "// Select a building from the world to view its code"
+scroll_fit_content_height = true
+
+[node name="Properties" type="RichTextLabel" parent="EditorPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Properties"
+theme_override_font_sizes/size = 12
+
+[node name="StatusBar" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -30.0
+offset_right = 200.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ready"
+horizontal_alignment = 1
+
+[node name="BuildingInfo" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -200.0
+offset_right = 410.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="BuildingInfo"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BuildingInfo/VBox"]
+layout_mode = 2
+text = "Building Name"
+
+[node name="Description" type="Label" parent="BuildingInfo/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+text = "Description"
+
+[node name="Files" type="Label" parent="BuildingInfo/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+text = "Files..."
+
+[node name="Instructions" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -100.0
+offset_right = 320.0
+offset_bottom = -10.0
+grow_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="Instructions"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Instructions/VBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Controls[/b]
+WASD = Move | E/Q = Up/Down
+Left-click = Select building
+Right-drag = Pan camera
+Scroll = Zoom"
