@@ -1,0 +1,41 @@
+# Godot
+.godot/
+*.import
+export/
+*.pck
+*.exe
+*.dmg
+*.app
+*.zip
+
+# Devworld (zo.site)
+/devworld/dist/
+/devworld/node_modules/
+/devworld/.vite/
+/devworld/bun.lockb
+
+# Luanti server
+/devworld-luanti/world/
+/devworld-luanti/worldmods/
+/devworld-luanti/clientmods/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+/dev/shm/*_err.log
+
+# Large binaries
+*.apk
+*.ipa
+*.xapk
